@@ -1,0 +1,2204 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính Phí Sàn Shopee 2026 - Công Cụ Tính Phí Chính Xác</title>
+    <meta name="description" content="Công cụ tính phí sàn Shopee chính xác nhất 2026. Tính phí cố định, phí xử lý giao dịch, phí Voucher Xtra và lợi nhuận thực tế cho người bán Shopee.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
+    <style>
+        /* ============ CSS RESET & VARIABLES ============ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --shopee-primary: #EE4D2D;
+            --shopee-primary-dark: #D73211;
+            --shopee-primary-light: #FF6B4A;
+            --shopee-gradient: linear-gradient(135deg, #EE4D2D 0%, #FF6B4A 50%, #FF8A65 100%);
+            --shopee-gradient-dark: linear-gradient(135deg, #D73211 0%, #EE4D2D 100%);
+            
+            --bg-primary: #F5F6FA;
+            --bg-secondary: #EDEEF3;
+            --bg-card: #FFFFFF;
+            --bg-card-hover: #FAFBFD;
+            --bg-input: #F3F4F8;
+            --bg-input-focus: #EDEEF3;
+            
+            --text-primary: #1A1A2E;
+            --text-secondary: #4A4A68;
+            --text-muted: #8888A0;
+            --text-accent: #EE4D2D;
+            
+            --border-color: #E2E4EC;
+            --border-focus: #EE4D2D;
+            
+            --success: #0D9F4F;
+            --success-bg: rgba(13, 159, 79, 0.08);
+            --warning: #E69500;
+            --warning-bg: rgba(230, 149, 0, 0.08);
+            --danger: #E53935;
+            --danger-bg: rgba(229, 57, 53, 0.08);
+            --info: #1E6FD9;
+            --info-bg: rgba(30, 111, 217, 0.08);
+            
+            --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-glow: 0 4px 16px rgba(238, 77, 45, 0.15);
+            
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ============ BASE STYLES ============ */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ============ BACKGROUND EFFECTS ============ */
+        .bg-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.06;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .bg-orb-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--shopee-primary);
+            top: -200px;
+            right: -200px;
+            animation-delay: 0s;
+        }
+
+        .bg-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: #FF6B4A;
+            bottom: -100px;
+            left: -100px;
+            animation-delay: -7s;
+        }
+
+        .bg-orb-3 {
+            width: 300px;
+            height: 300px;
+            background: #FF8A65;
+            top: 50%;
+            left: 50%;
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* ============ HEADER ============ */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--shopee-gradient);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: var(--shadow-glow);
+            transition: var(--transition);
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(-5deg) scale(1.05);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 18px;
+            font-weight: 800;
+            background: var(--shopee-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .header-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #FFF3F0;
+            border: 1px solid #FFD6CC;
+            border-radius: 100px;
+            font-size: 12px;
+            color: var(--shopee-primary);
+            font-weight: 600;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 60px 24px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: #FFF3F0;
+            border: 1px solid #FFD6CC;
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--shopee-primary);
+            font-weight: 600;
+            margin-bottom: 20px;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+            animation: fadeInDown 0.6s ease 0.1s both;
+        }
+
+        .hero h1 .gradient-text {
+            background: var(--shopee-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInDown 0.6s ease 0.2s both;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============ MAIN CONTAINER ============ */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        /* ============ CARD STYLES ============ */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            border-color: rgba(238, 77, 45, 0.3);
+        }
+
+        .card-header {
+            padding: 24px 28px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .card-header-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .card-header-icon.orange {
+            background: rgba(238, 77, 45, 0.12);
+        }
+
+        .card-header-icon.green {
+            background: rgba(0, 200, 83, 0.12);
+        }
+
+        .card-header-icon.blue {
+            background: rgba(68, 138, 255, 0.12);
+        }
+
+        .card-header-icon.purple {
+            background: rgba(156, 39, 176, 0.12);
+        }
+
+        .card-header h2 {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .card-header p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .card-body {
+            padding: 24px 28px 28px;
+        }
+
+        /* ============ FORM STYLES ============ */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .form-label .label-info {
+            font-weight: 400;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .form-input-wrapper {
+            position: relative;
+        }
+
+        .form-input-wrapper .prefix {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 600;
+            pointer-events: none;
+        }
+
+        .form-input-wrapper .suffix {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 500;
+            pointer-events: none;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-input);
+            border: 1.5px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 15px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-input:hover {
+            border-color: rgba(238, 77, 45, 0.3);
+            background: var(--bg-input-focus);
+        }
+
+        .form-input:focus {
+            border-color: var(--shopee-primary);
+            background: var(--bg-input-focus);
+            box-shadow: 0 0 0 3px rgba(238, 77, 45, 0.15);
+        }
+
+        .form-input.has-prefix {
+            padding-left: 36px;
+        }
+
+        .form-input.has-suffix {
+            padding-right: 50px;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px 40px 12px 16px;
+            background: var(--bg-input);
+            border: 1.5px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238888A0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+        }
+
+        .form-select:hover {
+            border-color: rgba(238, 77, 45, 0.3);
+            background-color: var(--bg-input-focus);
+        }
+
+        .form-select:focus {
+            border-color: var(--shopee-primary);
+            background-color: var(--bg-input-focus);
+            box-shadow: 0 0 0 3px rgba(238, 77, 45, 0.15);
+        }
+
+        .form-select option {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            padding: 8px;
+        }
+
+        /* Toggle Switch */
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            background: var(--bg-input);
+            border: 1.5px solid var(--border-color);
+            border-radius: var(--radius-md);
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .toggle-group:hover {
+            border-color: rgba(238, 77, 45, 0.3);
+            background: var(--bg-input-focus);
+        }
+
+        .toggle-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .toggle-label {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .toggle-label span:first-child {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .toggle-label span:last-child {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 26px;
+            flex-shrink: 0;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #C8CAD4;
+            border-radius: 100px;
+            transition: var(--transition);
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background: var(--shopee-primary);
+        }
+
+        .toggle-switch input:checked + .toggle-slider::before {
+            transform: translateX(22px);
+        }
+
+        /* ============ CALCULATE BUTTON ============ */
+        .btn-calculate {
+            width: 100%;
+            padding: 16px;
+            background: var(--shopee-gradient);
+            border: none;
+            border-radius: var(--radius-md);
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-calculate::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-calculate:hover::before {
+            left: 100%;
+        }
+
+        .btn-calculate:active {
+            transform: translateY(0);
+        }
+
+        .btn-calculate svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ============ RESULTS SECTION ============ */
+        .results-panel {
+            position: sticky;
+            top: 90px;
+        }
+
+        .result-summary-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .result-highlight {
+            padding: 32px 28px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(135deg, #FFF5F2 0%, #FFEEE8 100%);
+        }
+
+        .result-highlight-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .result-highlight-value {
+            font-size: 42px;
+            font-weight: 900;
+            background: var(--shopee-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            transition: var(--transition);
+        }
+
+        .result-highlight-sub {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .result-items {
+            padding: 24px 28px;
+        }
+
+        .result-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-item:hover {
+            padding-left: 4px;
+        }
+
+        .result-item-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .result-item-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .result-item-dot.orange { background: var(--shopee-primary); }
+        .result-item-dot.blue { background: var(--info); }
+        .result-item-dot.green { background: var(--success); }
+        .result-item-dot.yellow { background: var(--warning); }
+        .result-item-dot.red { background: var(--danger); }
+        .result-item-dot.purple { background: #9C27B0; }
+
+        .result-item-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .result-item-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .result-item-value.negative {
+            color: var(--danger);
+        }
+
+        .result-item-value.positive {
+            color: var(--success);
+        }
+
+        /* Profit Card */
+        .profit-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .profit-bar-container {
+            padding: 24px 28px;
+        }
+
+        .profit-bar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .profit-bar-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .profit-bar-percentage {
+            font-size: 18px;
+            font-weight: 800;
+            transition: var(--transition);
+        }
+
+        .profit-bar-percentage.positive { color: var(--success); }
+        .profit-bar-percentage.negative { color: var(--danger); }
+
+        .profit-bar-track {
+            width: 100%;
+            height: 10px;
+            background: var(--bg-input);
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .profit-bar-fill {
+            height: 100%;
+            border-radius: 100px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--shopee-gradient);
+        }
+
+        .profit-bar-fill.good { background: linear-gradient(90deg, #00C853, #69F0AE); }
+        .profit-bar-fill.mid { background: linear-gradient(90deg, #FFB300, #FFD54F); }
+        .profit-bar-fill.bad { background: linear-gradient(90deg, #FF5252, #FF8A80); }
+
+        /* Profit breakdown mini stats */
+        .profit-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 0 28px 24px;
+        }
+
+        .profit-stat {
+            padding: 16px;
+            background: var(--bg-input);
+            border-radius: var(--radius-md);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .profit-stat:hover {
+            background: var(--bg-input-focus);
+            transform: translateY(-2px);
+        }
+
+        .profit-stat-value {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+
+        .profit-stat-value.revenue { color: var(--info); }
+        .profit-stat-value.fee { color: var(--danger); }
+        .profit-stat-value.profit { color: var(--success); }
+        .profit-stat-value.cost { color: var(--warning); }
+
+        .profit-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ============ FEE TABLE SECTION ============ */
+        .fee-table-section {
+            margin-top: 40px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .fee-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .fee-info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fee-info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--shopee-gradient);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .fee-info-card:hover {
+            border-color: rgba(238, 77, 45, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .fee-info-card:hover::before {
+            opacity: 1;
+        }
+
+        .fee-info-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .fee-info-card .fee-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .fee-info-card .fee-rate {
+            font-size: 28px;
+            font-weight: 900;
+            background: var(--shopee-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .fee-info-card .fee-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ============ CATEGORY TABLE ============ */
+        .table-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .table-card .card-header {
+            padding: 20px 28px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .fee-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .fee-table thead th {
+            padding: 14px 20px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(238, 77, 45, 0.05);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .fee-table tbody td {
+            padding: 14px 20px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .fee-table tbody tr:hover td {
+            background: rgba(238, 77, 45, 0.03);
+            color: var(--text-primary);
+        }
+
+        .fee-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .fee-table .category-icon {
+            margin-right: 8px;
+        }
+
+        .fee-table .fee-badge {
+            display: inline-flex;
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .fee-badge.low {
+            background: var(--success-bg);
+            color: var(--success);
+        }
+
+        .fee-badge.medium {
+            background: var(--warning-bg);
+            color: var(--warning);
+        }
+
+        .fee-badge.high {
+            background: var(--danger-bg);
+            color: var(--danger);
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border-color);
+            background: #FFFFFF;
+        }
+
+        .footer p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer a {
+            color: var(--shopee-primary-light);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .disclaimer {
+            margin-top: 8px;
+            font-size: 11px;
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 900px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-panel {
+                position: static;
+            }
+
+            .header-badge {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 40px 16px 24px;
+            }
+
+            .card-body {
+                padding: 20px;
+            }
+
+            .card-header {
+                padding: 18px 20px;
+            }
+
+            .result-highlight {
+                padding: 24px 20px;
+            }
+
+            .result-highlight-value {
+                font-size: 32px;
+            }
+
+            .result-items {
+                padding: 20px;
+            }
+
+            .profit-stats {
+                grid-template-columns: 1fr;
+                padding: 0 20px 20px;
+            }
+
+            .profit-bar-container {
+                padding: 20px;
+            }
+
+            .fee-cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 16px 40px;
+            }
+        }
+
+        /* ============ ANIMATIONS ============ */
+        .fade-in {
+            animation: fadeIn 0.5s ease both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .number-pop {
+            animation: numberPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes numberPop {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            z-index: 10;
+            box-shadow: var(--shadow-md);
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+        }
+
+        /* Notice banner */
+        .notice-banner {
+            max-width: 800px;
+            margin: 0 auto 24px;
+            padding: 14px 20px;
+            background: #EBF3FE;
+            border: 1px solid #BDD4F5;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            color: var(--info);
+            position: relative;
+            z-index: 1;
+        }
+
+        .notice-banner .notice-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Reset button */
+        .btn-reset {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 1.5px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-reset:hover {
+            border-color: var(--shopee-primary);
+            color: var(--shopee-primary);
+            background: rgba(238, 77, 45, 0.05);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F0F0F4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C8CAD4;
+            border-radius: 100px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #A0A0B4;
+        }
+
+        /* ============ TABS ============ */
+        .tabs-nav {
+            display: flex;
+            gap: 12px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            padding: 0 24px;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-btn:hover {
+            color: var(--shopee-primary);
+            border-color: #FFD6CC;
+        }
+
+        .tab-btn.active {
+            background: var(--shopee-primary);
+            color: white;
+            border-color: var(--shopee-primary);
+            box-shadow: 0 4px 12px rgba(238, 77, 45, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Effects -->
+    <div class="bg-effects">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <div class="logo-icon">🛒</div>
+                <div class="logo-text">
+                    <span class="logo-title">Phí Sàn Shopee</span>
+                    <span class="logo-subtitle">Fee Calculator</span>
+                </div>
+            </a>
+            <div class="header-badge">
+                <div class="pulse-dot"></div>
+                Cập nhật 04/2026
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-tag">
+            ✨ Công cụ hỗ trợ người bán
+        </div>
+        <h1>Bộ Công Cụ <span class="gradient-text">Shopee Pro</span></h1>
+        <p>Tính toán phí sàn chính xác và công cụ hỗ trợ trích xuất thông tin đơn hàng nhanh chóng</p>
+    </section>
+
+    <!-- Tabs Nav -->
+    <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab('calculator', this)">🛒 Tính Phí Sàn</button>
+        <button class="tab-btn" onclick="switchTab('phone', this)">📞 Lấy SĐT Người Mua</button>
+    </div>
+
+    <!-- ================= CALCULATOR TAB ================= -->
+    <div id="tab-calculator" class="tab-content" style="display: block;">
+        <!-- Notice Banner -->
+        <div class="container" style="padding-bottom: 0;">
+            <div class="notice-banner">
+                <span class="notice-icon">ℹ️</span>
+                <span><strong>Lưu ý:</strong> Từ 24/04/2026, Shopee đổi tên "Phí thanh toán" thành "Phí xử lý giao dịch". Mức phí được cập nhật theo chính sách mới nhất.</span>
+            </div>
+        </div>
+
+    <!-- Main Calculator -->
+    <div class="container">
+        <div class="calculator-grid">
+            <!-- LEFT: Input Form -->
+            <div class="input-panel">
+                <!-- Product Info Card -->
+                <div class="card fade-in" style="margin-bottom: 20px;">
+                    <div class="card-header">
+                        <div class="card-header-icon orange">📦</div>
+                        <div>
+                            <h2>Thông Tin Sản Phẩm</h2>
+                            <p>Nhập giá bán và chi phí sản phẩm</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label">
+                                Giá bán sản phẩm
+                                <span class="label-info">Giá niêm yết trên Shopee</span>
+                            </label>
+                            <div class="form-input-wrapper">
+                                <span class="prefix">₫</span>
+                                <input type="text" id="productPrice" class="form-input has-prefix" placeholder="100,000" value="200,000" inputmode="numeric">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                Số lượng sản phẩm
+                                <span class="label-info">Trong 1 đơn hàng</span>
+                            </label>
+                            <div class="form-input-wrapper">
+                                <input type="number" id="quantity" class="form-input" value="1" min="1" max="999">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                Giá vốn sản phẩm
+                                <span class="label-info">Chi phí nhập/sản xuất</span>
+                            </label>
+                            <div class="form-input-wrapper">
+                                <span class="prefix">₫</span>
+                                <input type="text" id="costPrice" class="form-input has-prefix" placeholder="50,000" value="100,000" inputmode="numeric">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                Phí vận chuyển (Người bán trả)
+                                <span class="label-info">Nếu có</span>
+                            </label>
+                            <div class="form-input-wrapper">
+                                <span class="prefix">₫</span>
+                                <input type="text" id="shippingCost" class="form-input has-prefix" placeholder="0" value="0" inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fee Settings Card -->
+                <div class="card fade-in" style="margin-bottom: 20px; animation-delay: 0.1s;">
+                    <div class="card-header">
+                        <div class="card-header-icon blue">⚙️</div>
+                        <div>
+                            <h2>Cài Đặt Phí</h2>
+                            <p>Tùy chỉnh các loại phí áp dụng</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label">
+                                Loại Shop
+                            </label>
+                            <select id="shopType" class="form-select">
+                                <option value="normal">🏪 Shop Thường</option>
+                                <option value="mall">🏬 Shopee Mall</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                Ngành hàng
+                                <span class="label-info">Ảnh hưởng phí cố định</span>
+                            </label>
+                            <select id="category" class="form-select">
+                                <option value="thoi_trang" data-fee-normal="13" data-fee-mall="16">👗 Thời Trang (Nam/Nữ/Trẻ em)</option>
+                                <option value="giay_dep" data-fee-normal="13" data-fee-mall="16">👟 Giày Dép</option>
+                                <option value="tui_vi" data-fee-normal="13" data-fee-mall="16">👜 Túi Ví</option>
+                                <option value="phu_kien" data-fee-normal="13" data-fee-mall="16">💍 Phụ Kiện Thời Trang</option>
+                                <option value="dien_tu" data-fee-normal="10" data-fee-mall="13">📱 Điện Thoại & Phụ Kiện</option>
+                                <option value="may_tinh" data-fee-normal="10" data-fee-mall="13">💻 Máy Tính & Laptop</option>
+                                <option value="dien_gia_dung" data-fee-normal="10" data-fee-mall="14">🏠 Điện Gia Dụng</option>
+                                <option value="thiet_bi_dien_tu" data-fee-normal="10" data-fee-mall="13">🎧 Thiết Bị Điện Tử</option>
+                                <option value="suc_khoe" data-fee-normal="12" data-fee-mall="15">💊 Sức Khỏe</option>
+                                <option value="me_be" data-fee-normal="11" data-fee-mall="14">🍼 Mẹ & Bé</option>
+                                <option value="lam_dep" data-fee-normal="13" data-fee-mall="16">💄 Sắc Đẹp</option>
+                                <option value="nha_cua" data-fee-normal="11" data-fee-mall="14">🏡 Nhà Cửa & Đời Sống</option>
+                                <option value="the_thao" data-fee-normal="12" data-fee-mall="15">⚽ Thể Thao & Du Lịch</option>
+                                <option value="oto_xe" data-fee-normal="8" data-fee-mall="10">🚗 Ô Tô - Xe Máy</option>
+                                <option value="sach" data-fee-normal="8" data-fee-mall="10">📚 Sách & Văn Phòng Phẩm</option>
+                                <option value="thuc_pham" data-fee-normal="6" data-fee-mall="8">🥬 Thực Phẩm (Tươi sống / Đóng hộp)</option>
+                                <option value="tieu_dung_nhanh" data-fee-normal="7" data-fee-mall="10">🧴 Tiêu Dùng Nhanh</option>
+                                <option value="do_choi" data-fee-normal="12.5" data-fee-mall="14">🧸 Đồ Chơi</option>
+                                <option value="thu_cung" data-fee-normal="10" data-fee-mall="13">🐾 Thú Cưng</option>
+                                <option value="gaming" data-fee-normal="10" data-fee-mall="13">🎮 Gaming & Console</option>
+                                <option value="dong_ho" data-fee-normal="13" data-fee-mall="16">⌚ Đồng Hồ</option>
+                                <option value="khac" data-fee-normal="11" data-fee-mall="14">📦 Ngành Hàng Khác</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                Phí cố định
+                                <span class="label-info">Tự động theo ngành hàng, có thể chỉnh tay</span>
+                            </label>
+                            <div class="form-input-wrapper">
+                                <input type="number" id="fixedFeeRate" class="form-input has-suffix" value="13" step="0.1" min="0" max="30">
+                                <span class="suffix">%</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                Phí xử lý giao dịch
+                                <span class="label-info">4.91% (lên 6% từ 01/05/2026)</span>
+                            </label>
+                            <div class="form-input-wrapper">
+                                <input type="number" id="transactionFee" class="form-input has-suffix" value="4.91" step="0.01" min="0" max="20">
+                                <span class="suffix">%</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" style="margin-bottom: 12px;">
+                                Dịch vụ bổ sung
+                            </label>
+                            <div class="toggle-group" onclick="toggleCheckbox('voucherXtra')">
+                                <div class="toggle-label">
+                                    <span>🎫 Voucher Xtra</span>
+                                    <span>4% giá sản phẩm (tối đa 50.000₫)</span>
+                                </div>
+                                <label class="toggle-switch" onclick="event.stopPropagation()">
+                                    <input type="checkbox" id="voucherXtra" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="toggle-group" onclick="toggleCheckbox('freeshipXtra')">
+                                <div class="toggle-label">
+                                    <span>🚚 Freeship Xtra</span>
+                                    <span>Phí tùy chương trình</span>
+                                </div>
+                                <label class="toggle-switch" onclick="event.stopPropagation()">
+                                    <input type="checkbox" id="freeshipXtra">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group" id="freeshipFeeGroup" style="display: none;">
+                            <label class="form-label">
+                                Phí Freeship Xtra
+                            </label>
+                            <div class="form-input-wrapper">
+                                <input type="number" id="freeshipFee" class="form-input has-suffix" value="3" step="0.1" min="0" max="10">
+                                <span class="suffix">%</span>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label class="form-label" style="margin-bottom: 12px;">
+                                Thuế & Khấu trừ
+                            </label>
+                            <div class="toggle-group" onclick="toggleCheckbox('taxGTGT')">
+                                <div class="toggle-label">
+                                    <span>📋 Thuế GTGT</span>
+                                    <span>Khấu trừ 1% doanh thu bán hàng hóa</span>
+                                </div>
+                                <label class="toggle-switch" onclick="event.stopPropagation()">
+                                    <input type="checkbox" id="taxGTGT" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="toggle-group" onclick="toggleCheckbox('taxTNCN')">
+                                <div class="toggle-label">
+                                    <span>📋 Thuế TNCN</span>
+                                    <span>Khấu trừ 0.5% doanh thu (cá nhân KD)</span>
+                                </div>
+                                <label class="toggle-switch" onclick="event.stopPropagation()">
+                                    <input type="checkbox" id="taxTNCN" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="toggle-group" onclick="toggleCheckbox('piship')">
+                                <div class="toggle-label">
+                                    <span>📦 Phí dịch vụ PiShip</span>
+                                    <span>Bảo hiểm vận chuyển trả hàng</span>
+                                </div>
+                                <label class="toggle-switch" onclick="event.stopPropagation()">
+                                    <input type="checkbox" id="piship">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group" id="pishipRateGroup" style="display: none;">
+                            <label class="form-label">
+                                Phí PiShip
+                            </label>
+                            <div class="form-input-wrapper">
+                                <input type="number" id="pishipRate" class="form-input has-suffix" value="2.35" step="0.01" min="0" max="10">
+                                <span class="suffix">%</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                Giảm giá / Voucher của Shop
+                                <span class="label-info">Nếu có</span>
+                            </label>
+                            <div class="form-input-wrapper">
+                                <span class="prefix">₫</span>
+                                <input type="text" id="shopDiscount" class="form-input has-prefix" placeholder="0" value="0" inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <button class="btn-calculate" id="btnCalculate" onclick="calculate()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="4" y="2" width="16" height="20" rx="2"/>
+                        <line x1="8" y1="6" x2="16" y2="6"/>
+                        <line x1="8" y1="10" x2="10" y2="10"/>
+                        <line x1="14" y1="10" x2="16" y2="10"/>
+                        <line x1="8" y1="14" x2="10" y2="14"/>
+                        <line x1="14" y1="14" x2="16" y2="14"/>
+                        <line x1="8" y1="18" x2="16" y2="18"/>
+                    </svg>
+                    Tính Phí Ngay
+                </button>
+                <button class="btn-reset" onclick="resetForm()">
+                    🔄 Nhập Lại
+                </button>
+            </div>
+
+            <!-- RIGHT: Results Panel -->
+            <div class="results-panel">
+                <!-- Total Fee Summary -->
+                <div class="result-summary-card fade-in" style="animation-delay: 0.2s;">
+                    <div class="result-highlight">
+                        <div class="result-highlight-label">Tổng Phí Sàn Shopee</div>
+                        <div class="result-highlight-value" id="totalFee">0₫</div>
+                        <div class="result-highlight-sub" id="totalFeePercent">0% giá bán</div>
+                    </div>
+                    <div class="result-items">
+                        <div class="result-item">
+                            <div class="result-item-left">
+                                <div class="result-item-dot orange"></div>
+                                <span class="result-item-label">Phí cố định</span>
+                            </div>
+                            <span class="result-item-value negative" id="fixedFeeResult">0₫</span>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-item-left">
+                                <div class="result-item-dot blue"></div>
+                                <span class="result-item-label">Phí xử lý giao dịch</span>
+                            </div>
+                            <span class="result-item-value negative" id="transactionFeeResult">0₫</span>
+                        </div>
+                        <div class="result-item" id="serviceFeeRow">
+                            <div class="result-item-left">
+                                <div class="result-item-dot purple"></div>
+                                <span class="result-item-label">Phí Dịch Vụ</span>
+                            </div>
+                            <span class="result-item-value negative" id="serviceFeeResult">0₫</span>
+                        </div>
+                        <div class="result-item" id="pishipRow" style="display: none;">
+                            <div class="result-item-left">
+                                <div class="result-item-dot yellow"></div>
+                                <span class="result-item-label">Phí dịch vụ PiShip</span>
+                            </div>
+                            <span class="result-item-value negative" id="pishipResult">0₫</span>
+                        </div>
+                        <div class="result-item" id="taxGTGTRow">
+                            <div class="result-item-left">
+                                <div class="result-item-dot red"></div>
+                                <span class="result-item-label">Thuế GTGT</span>
+                            </div>
+                            <span class="result-item-value negative" id="taxGTGTResult">0₫</span>
+                        </div>
+                        <div class="result-item" id="taxTNCNRow">
+                            <div class="result-item-left">
+                                <div class="result-item-dot red"></div>
+                                <span class="result-item-label">Thuế TNCN</span>
+                            </div>
+                            <span class="result-item-value negative" id="taxTNCNResult">0₫</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profit Analysis -->
+                <div class="profit-card fade-in" style="animation-delay: 0.3s;">
+                    <div class="card-header">
+                        <div class="card-header-icon green">📊</div>
+                        <div>
+                            <h2>Phân Tích Lợi Nhuận</h2>
+                            <p>Lợi nhuận thực tế sau trừ phí</p>
+                        </div>
+                    </div>
+                    <div class="profit-bar-container">
+                        <div class="profit-bar-header">
+                            <span class="profit-bar-label">Biên lợi nhuận</span>
+                            <span class="profit-bar-percentage positive" id="profitMargin">0%</span>
+                        </div>
+                        <div class="profit-bar-track">
+                            <div class="profit-bar-fill good" id="profitBarFill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="profit-stats">
+                        <div class="profit-stat">
+                            <div class="profit-stat-value revenue" id="revenueValue">0₫</div>
+                            <div class="profit-stat-label">Doanh thu</div>
+                        </div>
+                        <div class="profit-stat">
+                            <div class="profit-stat-value cost" id="costValue">0₫</div>
+                            <div class="profit-stat-label">Giá vốn</div>
+                        </div>
+                        <div class="profit-stat">
+                            <div class="profit-stat-value fee" id="feeValue">0₫</div>
+                            <div class="profit-stat-label">Tổng phí sàn</div>
+                        </div>
+                        <div class="profit-stat">
+                            <div class="profit-stat-value profit" id="profitValue">0₫</div>
+                            <div class="profit-stat-label">Lợi nhuận ròng</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Per Product -->
+                <div class="card fade-in" style="animation-delay: 0.4s;">
+                    <div class="card-header">
+                        <div class="card-header-icon purple">🧮</div>
+                        <div>
+                            <h2>Chi Tiết / Sản Phẩm</h2>
+                            <p>Phí & lợi nhuận trên mỗi sản phẩm</p>
+                        </div>
+                    </div>
+                    <div class="result-items" style="padding: 20px 28px;">
+                        <div class="result-item">
+                            <div class="result-item-left">
+                                <div class="result-item-dot orange"></div>
+                                <span class="result-item-label">Giá bán / SP</span>
+                            </div>
+                            <span class="result-item-value" id="perPrice">0₫</span>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-item-left">
+                                <div class="result-item-dot red"></div>
+                                <span class="result-item-label">Phí sàn / SP</span>
+                            </div>
+                            <span class="result-item-value negative" id="perFee">0₫</span>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-item-left">
+                                <div class="result-item-dot yellow"></div>
+                                <span class="result-item-label">Giá vốn / SP</span>
+                            </div>
+                            <span class="result-item-value" id="perCost">0₫</span>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-item-left">
+                                <div class="result-item-dot green"></div>
+                                <span class="result-item-label">Thực nhận / SP</span>
+                            </div>
+                            <span class="result-item-value positive" id="perProfit">0₫</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fee Info Section -->
+    <div class="container fee-table-section">
+        <div class="section-header">
+            <h2>📋 Bảng Phí Sàn Shopee <span class="gradient-text">2026</span></h2>
+            <p>Tổng hợp các loại phí áp dụng cho người bán trên Shopee Việt Nam</p>
+        </div>
+
+        <div class="fee-cards-grid">
+            <div class="fee-info-card">
+                <div class="fee-info-icon" style="background: rgba(238, 77, 45, 0.12);">📌</div>
+                <div class="fee-name">Phí Cố Định</div>
+                <div class="fee-rate">6% - 16%</div>
+                <div class="fee-desc">Tính trên giá trị sản phẩm, thay đổi theo ngành hàng và loại shop (Mall/Thường). Đã bao gồm thuế GTGT, cấn trừ trực tiếp trên đơn hàng.</div>
+            </div>
+            <div class="fee-info-card">
+                <div class="fee-info-icon" style="background: rgba(68, 138, 255, 0.12);">💳</div>
+                <div class="fee-name">Phí Xử Lý Giao Dịch</div>
+                <div class="fee-rate">4.91%</div>
+                <div class="fee-desc">Từ 24/04/2026 đổi tên từ "Phí thanh toán". Sẽ tăng lên 6% từ 01/05/2026. Áp dụng cho đơn giao thành công.</div>
+            </div>
+            <div class="fee-info-card">
+                <div class="fee-info-icon" style="background: rgba(156, 39, 176, 0.12);">🎫</div>
+                <div class="fee-name">Phí Dịch Vụ</div>
+                <div class="fee-rate">4% - 7%</div>
+                <div class="fee-desc">Bao gồm Voucher Xtra (4%, tối đa 50.000₫/SP) và Freeship Xtra (~3%). Áp dụng khi shop tham gia chương trình.</div>
+            </div>
+            <div class="fee-info-card">
+                <div class="fee-info-icon" style="background: rgba(255, 179, 0, 0.12);">📋</div>
+                <div class="fee-name">Thuế (GTGT + TNCN)</div>
+                <div class="fee-rate">1.5%</div>
+                <div class="fee-desc">Shopee khấu trừ 1% thuế GTGT và 0.5% thuế TNCN trên doanh thu. Áp dụng cho cá nhân kinh doanh có doanh thu >500tr/năm.</div>
+            </div>
+        </div>
+
+        <!-- Category Fee Table -->
+        <div class="table-card">
+            <div class="card-header">
+                <div class="card-header-icon orange">📊</div>
+                <div>
+                    <h2>Phí Cố Định Theo Ngành Hàng</h2>
+                    <p>Biểu phí tham khảo - kiểm tra Kênh Người Bán để xem mức phí chính xác</p>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table class="fee-table">
+                    <thead>
+                        <tr>
+                            <th>Ngành Hàng</th>
+                            <th>Shop Thường</th>
+                            <th>Shopee Mall</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="category-icon">👗</span> Thời Trang</td>
+                            <td><span class="fee-badge high">13%</span></td>
+                            <td><span class="fee-badge high">16%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">👟</span> Giày Dép</td>
+                            <td><span class="fee-badge high">13%</span></td>
+                            <td><span class="fee-badge high">16%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">💄</span> Sắc Đẹp</td>
+                            <td><span class="fee-badge high">13%</span></td>
+                            <td><span class="fee-badge high">16%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">⌚</span> Đồng Hồ</td>
+                            <td><span class="fee-badge high">13%</span></td>
+                            <td><span class="fee-badge high">16%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">💊</span> Sức Khỏe</td>
+                            <td><span class="fee-badge high">12%</span></td>
+                            <td><span class="fee-badge high">15%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">⚽</span> Thể Thao & Du Lịch</td>
+                            <td><span class="fee-badge high">12%</span></td>
+                            <td><span class="fee-badge high">15%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">🧸</span> Đồ Chơi</td>
+                            <td><span class="fee-badge high">12.5%</span></td>
+                            <td><span class="fee-badge high">14%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">🍼</span> Mẹ & Bé</td>
+                            <td><span class="fee-badge medium">11%</span></td>
+                            <td><span class="fee-badge high">14%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">🏡</span> Nhà Cửa & Đời Sống</td>
+                            <td><span class="fee-badge medium">11%</span></td>
+                            <td><span class="fee-badge high">14%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">📱</span> Điện Thoại & Phụ Kiện</td>
+                            <td><span class="fee-badge medium">10%</span></td>
+                            <td><span class="fee-badge high">13%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">💻</span> Máy Tính & Laptop</td>
+                            <td><span class="fee-badge medium">10%</span></td>
+                            <td><span class="fee-badge high">13%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">🏠</span> Điện Gia Dụng</td>
+                            <td><span class="fee-badge medium">10%</span></td>
+                            <td><span class="fee-badge high">14%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">🐾</span> Thú Cưng</td>
+                            <td><span class="fee-badge medium">10%</span></td>
+                            <td><span class="fee-badge high">13%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">🎮</span> Gaming & Console</td>
+                            <td><span class="fee-badge medium">10%</span></td>
+                            <td><span class="fee-badge high">13%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">🚗</span> Ô Tô - Xe Máy</td>
+                            <td><span class="fee-badge low">8%</span></td>
+                            <td><span class="fee-badge medium">10%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">📚</span> Sách & VPP</td>
+                            <td><span class="fee-badge low">8%</span></td>
+                            <td><span class="fee-badge medium">10%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">🧴</span> Tiêu Dùng Nhanh</td>
+                            <td><span class="fee-badge low">7%</span></td>
+                            <td><span class="fee-badge medium">10%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="category-icon">🥬</span> Thực Phẩm</td>
+                            <td><span class="fee-badge low">6%</span></td>
+                            <td><span class="fee-badge low">8%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div> <!-- END TAB CALCULATOR -->
+
+    <!-- ================= PHONE EXTRACTOR TAB ================= -->
+    <div id="tab-phone" class="tab-content" style="display: none;">
+        <div class="container">
+            <div class="card fade-in">
+                <div class="card-header">
+                    <div class="card-header-icon blue">📞</div>
+                    <div>
+                        <h2>Lấy Số Điện Thoại & Địa Chỉ</h2>
+                        <p>Trích xuất thông tin khách hàng từ mã đơn Shopee</p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="notice-banner" style="margin-bottom: 24px; background: #FFF3F0; border-color: #FFD6CC; color: var(--shopee-primary-dark);">
+                        <span class="notice-icon">⚠️</span>
+                        <span>Do Shopee đã ẩn số điện thoại người mua. Công cụ này sẽ kết nối với API nội bộ để giải mã và lấy SĐT thực tế. Yêu cầu cần có cấu hình API. Bạn cần lấy sdt thông tin khách hàng hãy liên hệ qua zalo : 0386607818</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Mã Đơn Hàng Shopee</label>
+                        <textarea id="orderCodeInput" class="form-input" style="height: 100px; resize: vertical;" placeholder="Nhập mã đơn hàng hoặc dán text danh sách mã đơn vào đây (VD: 240424XXXXXX)..."></textarea>
+                    </div>
+
+                    <button class="btn btn-primary" style="width: 100%; margin-bottom: 24px;" onclick="extractPhone()">🔍 Lấy Thông Tin Người Mua</button>
+
+                    <!-- Result Area -->
+                    <div id="phoneResultArea" style="display: none; padding: 20px; background: #F8F9FA; border: 1px solid #E2E4EC; border-radius: var(--radius-md);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <h3 style="font-size: 16px; font-weight: 700;">Kết Quả Trích Xuất</h3>
+                            <span style="font-size: 13px; color: var(--success); font-weight: 600;">✓ Thành công</span>
+                        </div>
+                        
+                        <div style="display: grid; gap: 12px;">
+                            <div style="display: flex; gap: 12px; align-items: baseline;">
+                                <span style="font-weight: 600; min-width: 100px; color: var(--text-secondary);">Mã Đơn:</span>
+                                <span id="resOrderCode" style="font-weight: 700;">-</span>
+                            </div>
+                            <div style="display: flex; gap: 12px; align-items: baseline;">
+                                <span style="font-weight: 600; min-width: 100px; color: var(--text-secondary);">Tên KH:</span>
+                                <span id="resName" style="color: var(--shopee-primary); font-weight: 700;">-</span>
+                            </div>
+                            <div style="display: flex; gap: 12px; align-items: baseline;">
+                                <span style="font-weight: 600; min-width: 100px; color: var(--text-secondary);">SĐT Thực:</span>
+                                <div style="display: flex; gap: 8px; align-items: center;">
+                                    <span id="resPhone" style="font-size: 18px; font-weight: 700; color: #1A1A2E;">-</span>
+                                    <button style="padding: 4px 8px; border: 1px solid #E2E4EC; background: white; border-radius: 4px; cursor: pointer; font-size: 12px;" onclick="alert('Đã copy!')">Copy</button>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 12px; align-items: baseline;">
+                                <span style="font-weight: 600; min-width: 100px; color: var(--text-secondary);">Địa Chỉ:</span>
+                                <span id="resAddress">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- END TAB PHONE -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>🛒 Công cụ tính phí sàn Shopee — Cập nhật tháng 04/2026</p>
+        <p class="disclaimer">Lưu ý: Biểu phí mang tính chất tham khảo. Vui lòng kiểm tra trực tiếp trên <a href="https://banhang.shopee.vn" target="_blank" rel="noopener">Kênh Người Bán Shopee</a> để có thông tin chính xác nhất.</p>
+    </footer>
+
+    <script>
+        // ============ UTILITY FUNCTIONS ============
+        function formatCurrency(num) {
+            if (isNaN(num) || num === null) return '0₫';
+            const absNum = Math.abs(num);
+            let formatted;
+            if (absNum >= 1000000000) {
+                formatted = (absNum / 1000000000).toFixed(2) + ' tỷ';
+            } else if (absNum >= 1000000) {
+                formatted = new Intl.NumberFormat('vi-VN').format(Math.round(absNum));
+            } else {
+                formatted = new Intl.NumberFormat('vi-VN').format(Math.round(absNum));
+            }
+            return (num < 0 ? '-' : '') + formatted + '₫';
+        }
+
+        function formatShortCurrency(num) {
+            if (isNaN(num) || num === null) return '0₫';
+            const absNum = Math.abs(num);
+            let formatted;
+            if (absNum >= 1000000000) {
+                formatted = (absNum / 1000000000).toFixed(1) + 'B';
+            } else if (absNum >= 1000000) {
+                formatted = (absNum / 1000000).toFixed(1) + 'M';
+            } else if (absNum >= 1000) {
+                formatted = (absNum / 1000).toFixed(0) + 'K';
+            } else {
+                formatted = Math.round(absNum).toString();
+            }
+            return (num < 0 ? '-' : '') + formatted + '₫';
+        }
+
+        function parseCurrency(value) {
+            if (!value) return 0;
+            return parseInt(value.toString().replace(/[^\d]/g, ''), 10) || 0;
+        }
+
+        // Auto-format number inputs
+        function formatInput(input) {
+            const cursorPos = input.selectionStart;
+            const oldLen = input.value.length;
+            const rawValue = input.value.replace(/[^\d]/g, '');
+            if (rawValue) {
+                input.value = new Intl.NumberFormat('vi-VN').format(parseInt(rawValue, 10));
+            }
+            const newLen = input.value.length;
+            const newCursorPos = cursorPos + (newLen - oldLen);
+            input.setSelectionRange(newCursorPos, newCursorPos);
+        }
+
+        // Attach formatters to currency inputs
+        document.querySelectorAll('#productPrice, #costPrice, #shippingCost, #shopDiscount').forEach(input => {
+            input.addEventListener('input', () => formatInput(input));
+            input.addEventListener('focus', () => input.select());
+        });
+
+        // Toggle checkbox
+        function toggleCheckbox(id) {
+            const checkbox = document.getElementById(id);
+            checkbox.checked = !checkbox.checked;
+            checkbox.dispatchEvent(new Event('change'));
+        }
+
+        // Show/hide freeship fee input
+        document.getElementById('freeshipXtra').addEventListener('change', function() {
+            document.getElementById('freeshipFeeGroup').style.display = this.checked ? 'block' : 'none';
+        });
+
+        // Show/hide PiShip rate input
+        document.getElementById('piship').addEventListener('change', function() {
+            document.getElementById('pishipRateGroup').style.display = this.checked ? 'block' : 'none';
+        });
+
+        // Auto-update fixed fee rate when category or shop type changes
+        function updateFixedFeeRate() {
+            const shopType = document.getElementById('shopType').value;
+            const categorySelect = document.getElementById('category');
+            const selectedOption = categorySelect.options[categorySelect.selectedIndex];
+            const rate = shopType === 'mall'
+                ? parseFloat(selectedOption.dataset.feeMall)
+                : parseFloat(selectedOption.dataset.feeNormal);
+            document.getElementById('fixedFeeRate').value = rate;
+        }
+        document.getElementById('category').addEventListener('change', function() {
+            updateFixedFeeRate();
+        });
+        document.getElementById('shopType').addEventListener('change', function() {
+            updateFixedFeeRate();
+        });
+
+        // ============ CALCULATION LOGIC ============
+        function calculate() {
+            // Get values
+            const productPrice = parseCurrency(document.getElementById('productPrice').value);
+            const quantity = parseInt(document.getElementById('quantity').value, 10) || 1;
+            const costPrice = parseCurrency(document.getElementById('costPrice').value);
+            const shippingCost = parseCurrency(document.getElementById('shippingCost').value);
+            const shopDiscount = parseCurrency(document.getElementById('shopDiscount').value);
+            const fixedFeeRate = parseFloat(document.getElementById('fixedFeeRate').value) || 0;
+            const transactionFeeRate = parseFloat(document.getElementById('transactionFee').value) || 0;
+            const voucherXtraEnabled = document.getElementById('voucherXtra').checked;
+            const freeshipXtraEnabled = document.getElementById('freeshipXtra').checked;
+            const freeshipFeeRate = parseFloat(document.getElementById('freeshipFee').value) || 0;
+            const taxGTGTEnabled = document.getElementById('taxGTGT').checked;
+            const taxTNCNEnabled = document.getElementById('taxTNCN').checked;
+            const pishipEnabled = document.getElementById('piship').checked;
+            const pishipRate = parseFloat(document.getElementById('pishipRate').value) || 0;
+
+            // Total sale value (price * quantity - shop discount)
+            const totalSaleValue = (productPrice * quantity) - shopDiscount;
+            const effectiveSaleValue = Math.max(totalSaleValue, 0);
+
+            // 1. Phí cố định - based on product value
+            const fixedFee = Math.round(effectiveSaleValue * (fixedFeeRate / 100));
+
+            // 2. Phí xử lý giao dịch
+            const transactionFeeAmount = Math.round(effectiveSaleValue * (transactionFeeRate / 100));
+
+            // 3. Phí Dịch Vụ (Voucher Xtra + Freeship Xtra)
+            let voucherXtraFee = 0;
+            if (voucherXtraEnabled) {
+                const voucherPerProduct = Math.min(productPrice * 0.04, 50000);
+                voucherXtraFee = Math.round(voucherPerProduct * quantity);
+            }
+            let freeshipXtraFee = 0;
+            if (freeshipXtraEnabled) {
+                freeshipXtraFee = Math.round(effectiveSaleValue * (freeshipFeeRate / 100));
+            }
+            const serviceFee = voucherXtraFee + freeshipXtraFee;
+
+            // 4. Phí dịch vụ PiShip
+            let pishipFee = 0;
+            if (pishipEnabled) {
+                pishipFee = Math.round(effectiveSaleValue * (pishipRate / 100));
+            }
+
+            // 5. Thuế GTGT (1% doanh thu)
+            let taxGTGT = 0;
+            if (taxGTGTEnabled) {
+                taxGTGT = Math.round(effectiveSaleValue * 0.01);
+            }
+
+            // 6. Thuế TNCN (0.5% doanh thu)
+            let taxTNCN = 0;
+            if (taxTNCNEnabled) {
+                taxTNCN = Math.round(effectiveSaleValue * 0.005);
+            }
+
+            // Tổng phụ phí (surcharge)
+            const totalSurcharge = fixedFee + serviceFee + pishipFee + transactionFeeAmount;
+            // Tổng thuế
+            const totalTax = taxGTGT + taxTNCN;
+            // Tổng cộng tất cả phí
+            const totalFees = totalSurcharge + totalTax;
+
+            // Total cost = cost price * quantity + shipping
+            const totalCost = (costPrice * quantity) + shippingCost;
+
+            // Net revenue = sale value - total fees
+            const netRevenue = effectiveSaleValue - totalFees;
+
+            // Profit = net revenue - total cost
+            const profit = netRevenue - totalCost;
+
+            // Margins
+            const profitMargin = effectiveSaleValue > 0 ? (profit / effectiveSaleValue * 100) : 0;
+            const feePercent = effectiveSaleValue > 0 ? (totalFees / effectiveSaleValue * 100) : 0;
+
+            // ============ UPDATE UI ============
+            animateValue('totalFee', formatCurrency(totalFees));
+            document.getElementById('totalFeePercent').textContent = `${feePercent.toFixed(1)}% giá bán`;
+
+            // Fee breakdown
+            animateValue('fixedFeeResult', `-${formatCurrency(fixedFee)}`);
+            document.getElementById('fixedFeeResult').title = `${fixedFeeRate}% × ${formatCurrency(effectiveSaleValue)}`;
+
+            animateValue('transactionFeeResult', `-${formatCurrency(transactionFeeAmount)}`);
+            document.getElementById('transactionFeeResult').title = `${transactionFeeRate}% × ${formatCurrency(effectiveSaleValue)}`;
+
+            // Phí Dịch Vụ (combined Voucher + Freeship)
+            const showServiceFee = voucherXtraEnabled || freeshipXtraEnabled;
+            document.getElementById('serviceFeeRow').style.display = showServiceFee ? 'flex' : 'none';
+            if (showServiceFee) {
+                animateValue('serviceFeeResult', `-${formatCurrency(serviceFee)}`);
+                let details = [];
+                if (voucherXtraEnabled) details.push(`Voucher: ${formatCurrency(voucherXtraFee)}`);
+                if (freeshipXtraEnabled) details.push(`Freeship: ${formatCurrency(freeshipXtraFee)}`);
+                document.getElementById('serviceFeeResult').title = details.join(' + ');
+            }
+
+            // PiShip
+            document.getElementById('pishipRow').style.display = pishipEnabled ? 'flex' : 'none';
+            if (pishipEnabled) {
+                animateValue('pishipResult', `-${formatCurrency(pishipFee)}`);
+            }
+
+            // Thuế GTGT
+            document.getElementById('taxGTGTRow').style.display = taxGTGTEnabled ? 'flex' : 'none';
+            if (taxGTGTEnabled) {
+                animateValue('taxGTGTResult', `-${formatCurrency(taxGTGT)}`);
+            }
+
+            // Thuế TNCN
+            document.getElementById('taxTNCNRow').style.display = taxTNCNEnabled ? 'flex' : 'none';
+            if (taxTNCNEnabled) {
+                animateValue('taxTNCNResult', `-${formatCurrency(taxTNCN)}`);
+            }
+
+            // Profit analysis
+            const profitMarginEl = document.getElementById('profitMargin');
+            profitMarginEl.textContent = `${profitMargin.toFixed(1)}%`;
+            profitMarginEl.className = `profit-bar-percentage ${profitMargin >= 0 ? 'positive' : 'negative'}`;
+
+            const profitBarFill = document.getElementById('profitBarFill');
+            const barWidth = Math.min(Math.max(profitMargin, 0), 100);
+            profitBarFill.style.width = `${barWidth}%`;
+            profitBarFill.className = `profit-bar-fill ${profitMargin >= 20 ? 'good' : profitMargin >= 10 ? 'mid' : 'bad'}`;
+
+            // Stats
+            animateValue('revenueValue', formatShortCurrency(effectiveSaleValue));
+            animateValue('costValue', formatShortCurrency(totalCost));
+            animateValue('feeValue', formatShortCurrency(totalFees));
+
+            const profitValueEl = document.getElementById('profitValue');
+            profitValueEl.textContent = formatShortCurrency(profit);
+            profitValueEl.className = `profit-stat-value ${profit >= 0 ? 'profit' : 'fee'}`;
+
+            // Per product
+            const perProductFee = quantity > 0 ? totalFees / quantity : 0;
+            const perProductProfit = quantity > 0 ? profit / quantity : 0;
+            animateValue('perPrice', formatCurrency(productPrice));
+            animateValue('perFee', `-${formatCurrency(perProductFee)}`);
+            animateValue('perCost', formatCurrency(costPrice));
+
+            const perProfitEl = document.getElementById('perProfit');
+            perProfitEl.textContent = formatCurrency(perProductProfit);
+            perProfitEl.className = `result-item-value ${perProductProfit >= 0 ? 'positive' : 'negative'}`;
+
+            // Button animation
+            const btn = document.getElementById('btnCalculate');
+            btn.style.transform = 'scale(0.97)';
+            setTimeout(() => { btn.style.transform = ''; }, 150);
+        }
+
+        function animateValue(id, value) {
+            const el = document.getElementById(id);
+            el.textContent = value;
+            el.classList.remove('number-pop');
+            void el.offsetWidth; // force reflow
+            el.classList.add('number-pop');
+        }
+
+        function resetForm() {
+            document.getElementById('productPrice').value = '200,000';
+            document.getElementById('quantity').value = '1';
+            document.getElementById('costPrice').value = '100,000';
+            document.getElementById('shippingCost').value = '0';
+            document.getElementById('shopDiscount').value = '0';
+            document.getElementById('shopType').value = 'normal';
+            document.getElementById('category').value = 'thoi_trang';
+            document.getElementById('transactionFee').value = '4.91';
+            document.getElementById('voucherXtra').checked = true;
+            document.getElementById('freeshipXtra').checked = false;
+            document.getElementById('freeshipFee').value = '3';
+            document.getElementById('freeshipFeeGroup').style.display = 'none';
+            document.getElementById('taxGTGT').checked = true;
+            document.getElementById('taxTNCN').checked = true;
+            document.getElementById('piship').checked = false;
+            document.getElementById('pishipRate').value = '2.35';
+            document.getElementById('pishipRateGroup').style.display = 'none';
+            updateFixedFeeRate();
+
+            calculate();
+        }
+
+        // Auto calculate on any input change
+        document.querySelectorAll('input, select').forEach(el => {
+            el.addEventListener('input', calculate);
+            el.addEventListener('change', calculate);
+        });
+
+        // Initial calculation
+        window.addEventListener('DOMContentLoaded', () => {
+            updateFixedFeeRate();
+            calculate();
+        });
+
+        // Keyboard shortcut: Enter to calculate
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const isCalculatorActive = document.getElementById('tab-calculator').style.display !== 'none';
+                if (isCalculatorActive) {
+                    calculate();
+                } else {
+                    extractPhone();
+                }
+            }
+        });
+
+        // ============ TAB SWITCHING & EXTRACTOR ============
+        function switchTab(tabId, btn) {
+            // Hide all
+            document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            // Show selected
+            document.getElementById('tab-' + tabId).style.display = 'block';
+            btn.classList.add('active');
+        }
+
+        function extractPhone() {
+            const input = document.getElementById('orderCodeInput').value.trim();
+            if (!input) {
+                alert("Vui lòng nhập mã đơn hàng!");
+                return;
+            }
+            
+            // Dummy logic - in real scenario, this connects to your extraction API backend
+            const demoBtn = document.querySelector('#tab-phone .btn-primary');
+            demoBtn.innerHTML = '⏳ Đang trích xuất...';
+            demoBtn.style.opacity = '0.7';
+
+            setTimeout(() => {
+                const demoCode = input.split('\n')[0].substring(0, 15) || '240424XXXXXX';
+                document.getElementById('resOrderCode').textContent = demoCode;
+                document.getElementById('resName').textContent = '**************';
+                document.getElementById('resPhone').textContent = '**************';
+                document.getElementById('resAddress').textContent = '**************';
+                
+                document.getElementById('phoneResultArea').style.display = 'block';
+                demoBtn.innerHTML = '🔍 Lấy Thông Tin Mới';
+                demoBtn.style.opacity = '1';
+                
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
