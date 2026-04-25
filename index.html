@@ -24,19 +24,19 @@
             --shopee-gradient: linear-gradient(135deg, #EE4D2D 0%, #FF6B4A 50%, #FF8A65 100%);
             --shopee-gradient-dark: linear-gradient(135deg, #D73211 0%, #EE4D2D 100%);
             
-            --bg-primary: #F5F6FA;
+            --bg-primary: #F2F5F9;
             --bg-secondary: #EDEEF3;
-            --bg-card: #FFFFFF;
-            --bg-card-hover: #FAFBFD;
-            --bg-input: #F3F4F8;
-            --bg-input-focus: #EDEEF3;
+            --bg-card: rgba(255, 255, 255, 0.65);
+            --bg-card-hover: rgba(255, 255, 255, 0.85);
+            --bg-input: rgba(255, 255, 255, 0.5);
+            --bg-input-focus: rgba(255, 255, 255, 0.9);
             
             --text-primary: #1A1A2E;
             --text-secondary: #4A4A68;
             --text-muted: #8888A0;
             --text-accent: #EE4D2D;
             
-            --border-color: #E2E4EC;
+            --border-color: rgba(0, 0, 0, 0.06);
             --border-focus: #EE4D2D;
             
             --success: #0D9F4F;
@@ -48,14 +48,15 @@
             --info: #1E6FD9;
             --info-bg: rgba(30, 111, 217, 0.08);
             
-            --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
-            --shadow-glow: 0 4px 16px rgba(238, 77, 45, 0.15);
+            --shadow-sm: 0 4px 12px rgba(31, 38, 135, 0.04);
+            --shadow-md: 0 10px 30px rgba(31, 38, 135, 0.07);
+            --shadow-lg: 0 20px 40px rgba(31, 38, 135, 0.1);
+            --shadow-glow: 0 8px 24px rgba(238, 77, 45, 0.25);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.8);
             
             --radius-sm: 8px;
             --radius-md: 12px;
-            --radius-lg: 16px;
+            --radius-lg: 20px;
             --radius-xl: 24px;
             
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -90,8 +91,8 @@
         .bg-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.06;
+            filter: blur(100px);
+            opacity: 0.25;
             animation: float 20s ease-in-out infinite;
         }
 
@@ -295,14 +296,19 @@
         /* ============ CARD STYLES ============ */
         .card {
             background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: var(--glass-border);
             border-radius: var(--radius-lg);
             overflow: hidden;
             transition: var(--transition);
+            box-shadow: var(--shadow-sm);
         }
 
         .card:hover {
-            border-color: rgba(238, 77, 45, 0.3);
+            border-color: rgba(255, 255, 255, 1);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
         }
 
         .card-header {
@@ -621,7 +627,9 @@
 
         .result-summary-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: var(--glass-border);
             border-radius: var(--radius-lg);
             overflow: hidden;
             margin-bottom: 20px;
@@ -726,10 +734,13 @@
         /* Profit Card */
         .profit-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: var(--glass-border);
             border-radius: var(--radius-lg);
             overflow: hidden;
             margin-bottom: 20px;
+            box-shadow: var(--shadow-md);
         }
 
         .profit-bar-container {
@@ -849,12 +860,15 @@
 
         .fee-info-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: var(--glass-border);
             border-radius: var(--radius-lg);
             padding: 24px;
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            box-shadow: var(--shadow-sm);
         }
 
         .fee-info-card::before {
@@ -870,9 +884,9 @@
         }
 
         .fee-info-card:hover {
-            border-color: rgba(238, 77, 45, 0.3);
+            border-color: rgba(255, 255, 255, 1);
             transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow-md);
         }
 
         .fee-info-card:hover::before {
@@ -915,9 +929,12 @@
         /* ============ CATEGORY TABLE ============ */
         .table-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: var(--glass-border);
             border-radius: var(--radius-lg);
             overflow: hidden;
+            box-shadow: var(--shadow-sm);
         }
 
         .table-card .card-header {
@@ -1302,7 +1319,7 @@
                             </label>
                             <div class="form-input-wrapper">
                                 <span class="prefix">₫</span>
-                                <input type="text" id="productPrice" class="form-input has-prefix" placeholder="100,000" value="200,000" inputmode="numeric">
+                                <input type="text" id="productPrice" class="form-input has-prefix" placeholder="100,000" value="0" inputmode="numeric">
                             </div>
                         </div>
                         <div class="form-group">
@@ -1321,7 +1338,7 @@
                             </label>
                             <div class="form-input-wrapper">
                                 <span class="prefix">₫</span>
-                                <input type="text" id="costPrice" class="form-input has-prefix" placeholder="50,000" value="100,000" inputmode="numeric">
+                                <input type="text" id="costPrice" class="form-input has-prefix" placeholder="50,000" value="0" inputmode="numeric">
                             </div>
                         </div>
                         <div class="form-group">
