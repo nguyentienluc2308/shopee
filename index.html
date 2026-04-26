@@ -1334,6 +1334,134 @@
             border-color: var(--shopee-primary);
             box-shadow: 0 4px 12px rgba(238, 77, 45, 0.2);
         }
+
+        /* ============ FREESHIP CONFIRM MODAL ============ */
+        .confirm-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+            animation: confirmOverlayIn 0.25s ease;
+        }
+
+        .confirm-overlay.active {
+            display: flex;
+        }
+
+        @keyframes confirmOverlayIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .confirm-modal {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: var(--radius-xl);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.5);
+            max-width: 420px;
+            width: 100%;
+            padding: 36px 32px 28px;
+            text-align: center;
+            animation: confirmModalIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes confirmModalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.85) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .confirm-modal-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 8px 24px rgba(255, 152, 0, 0.2);
+        }
+
+        .confirm-modal-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+
+        .confirm-modal-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .confirm-modal-text strong {
+            color: var(--shopee-primary);
+            font-weight: 700;
+        }
+
+        .confirm-modal-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .confirm-modal-btn {
+            flex: 1;
+            padding: 13px 20px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .confirm-modal-btn.cancel {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border: 1.5px solid var(--border-color);
+        }
+
+        .confirm-modal-btn.cancel:hover {
+            background: #E0E1E8;
+            border-color: #C8CAD4;
+        }
+
+        .confirm-modal-btn.confirm {
+            background: var(--shopee-gradient);
+            color: white;
+            box-shadow: 0 4px 14px rgba(238, 77, 45, 0.3);
+        }
+
+        .confirm-modal-btn.confirm:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(238, 77, 45, 0.4);
+        }
+
+        .confirm-modal-btn:active {
+            transform: scale(0.97);
+        }
     </style>
 </head>
 
@@ -1561,12 +1689,12 @@
                                         <span>Phí tùy chương trình</span>
                                     </div>
                                     <label class="toggle-switch" onclick="event.stopPropagation()">
-                                        <input type="checkbox" id="freeshipXtra" checked>
+                                        <input type="checkbox" id="freeshipXtra">
                                         <span class="toggle-slider"></span>
                                     </label>
                                 </div>
                             </div>
-                            <div class="form-group" id="freeshipFeeGroup">
+                            <div class="form-group" id="freeshipFeeGroup" style="display: none;">
                                 <label class="form-label">
                                     Phí Freeship Xtra
                                 </label>
@@ -1603,7 +1731,7 @@
                                 <div class="toggle-group" onclick="toggleCheckbox('piship')">
                                     <div class="toggle-label">
                                         <span>📦 Phí dịch vụ PiShip</span>
-                                        <span>Bảo hiểm vận chuyển trả hàng</span>
+                                        <span>Phí cố định: 1.620₫/đơn hàng</span>
                                     </div>
                                     <label class="toggle-switch" onclick="event.stopPropagation()">
                                         <input type="checkbox" id="piship">
@@ -1611,16 +1739,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="form-group" id="pishipRateGroup" style="display: none;">
-                                <label class="form-label">
-                                    Phí PiShip
-                                </label>
-                                <div class="form-input-wrapper">
-                                    <input type="number" id="pishipRate" class="form-input has-suffix" value="2.35"
-                                        step="0.01" min="0" max="10">
-                                    <span class="suffix">%</span>
-                                </div>
-                            </div>
+
                             <div class="form-group">
                                 <label class="form-label">
                                     Giảm giá / Voucher của Shop
@@ -2102,15 +2221,128 @@
             checkbox.dispatchEvent(new Event('change'));
         }
 
-        // Show/hide freeship fee input
-        document.getElementById('freeshipXtra').addEventListener('change', function () {
-            document.getElementById('freeshipFeeGroup').style.display = this.checked ? 'block' : 'none';
+        // Config for all toggles
+        const toggleConfigs = {
+            'freeshipXtra': {
+                on: {
+                    icon: '🚚',
+                    title: 'Bật Freeship Xtra?',
+                    text: 'Để sử dụng <strong>Freeship Xtra</strong>, shop của bạn phải <strong>tham gia sự kiện Freeship Xtra</strong> của Shopee.<br><br>Bạn có chắc muốn bật tính năng này?',
+                    btn: '✅ Bật lên'
+                },
+                off: {
+                    icon: '🔕',
+                    title: 'Tắt Freeship Xtra?',
+                    text: 'Bạn đang muốn <strong>tắt Freeship Xtra</strong>. Phí Freeship Xtra sẽ <strong>không được tính</strong> vào chi phí.<br><br>Bạn có chắc muốn tắt?',
+                    btn: '🚫 Tắt đi'
+                }
+            },
+            'voucherXtra': {
+                on: {
+                    icon: '🎫',
+                    title: 'Bật Voucher Xtra?',
+                    text: 'Để sử dụng <strong>Voucher Xtra</strong>, shop của bạn phải <strong>tham gia chương trình Voucher Xtra</strong> của Shopee.<br><br>Phí sẽ được tính <strong>4% giá sản phẩm</strong> (tối đa 50.000₫/SP).<br><br>Bạn có chắc muốn bật?',
+                    btn: '✅ Bật lên'
+                },
+                off: {
+                    icon: '🔕',
+                    title: 'Tắt Voucher Xtra?',
+                    text: 'Bạn đang muốn <strong>tắt Voucher Xtra</strong>. Phí Voucher Xtra sẽ <strong>không được tính</strong> vào chi phí.<br><br>Bạn có chắc muốn tắt?',
+                    btn: '🚫 Tắt đi'
+                }
+            },
+            'taxGTGT': {
+                on: {
+                    icon: '📋',
+                    title: 'Bật Thuế GTGT?',
+                    text: 'Bạn đang bật tính năng tính <strong>Thuế Giá trị gia tăng (GTGT)</strong> (1% doanh thu).<br><br>Bạn có chắc muốn bật?',
+                    btn: '✅ Bật lên'
+                },
+                off: {
+                    icon: '🔕',
+                    title: 'Tắt Thuế GTGT?',
+                    text: 'Bạn đang muốn <strong>tắt Thuế GTGT</strong>. Thuế này sẽ <strong>không được tính</strong> vào chi phí.<br><br>Chỉ nên tắt nếu bạn không phải nộp thuế này.<br><br>Bạn có chắc muốn tắt?',
+                    btn: '🚫 Tắt đi'
+                }
+            },
+            'taxTNCN': {
+                on: {
+                    icon: '📋',
+                    title: 'Bật Thuế TNCN?',
+                    text: 'Bạn đang bật tính năng tính <strong>Thuế Thu nhập cá nhân (TNCN)</strong> (0.5% doanh thu).<br><br>Bạn có chắc muốn bật?',
+                    btn: '✅ Bật lên'
+                },
+                off: {
+                    icon: '🔕',
+                    title: 'Tắt Thuế TNCN?',
+                    text: 'Bạn đang muốn <strong>tắt Thuế TNCN</strong>. Thuế này sẽ <strong>không được tính</strong> vào chi phí.<br><br>Chỉ nên tắt nếu bạn không phải nộp thuế này.<br><br>Bạn có chắc muốn tắt?',
+                    btn: '🚫 Tắt đi'
+                }
+            },
+            'piship': {
+                on: {
+                    icon: '📦',
+                    title: 'Bật Phí PiShip?',
+                    text: 'Bạn đang bật tính <strong>Phí dịch vụ PiShip</strong> (1.620₫/đơn hàng).<br><br>Bạn có chắc muốn bật?',
+                    btn: '✅ Bật lên'
+                },
+                off: {
+                    icon: '🔕',
+                    title: 'Tắt Phí PiShip?',
+                    text: 'Bạn đang muốn <strong>tắt Phí dịch vụ PiShip</strong>. Phí này sẽ <strong>không được tính</strong> vào chi phí.<br><br>Bạn có chắc muốn tắt?',
+                    btn: '🚫 Tắt đi'
+                }
+            }
+        };
+
+        // Setup generic confirm for all toggles
+        Object.keys(toggleConfigs).forEach(toggleId => {
+            const toggleElement = document.getElementById(toggleId);
+            if(toggleElement) {
+                toggleElement.addEventListener('change', function (e) {
+                    const mode = this.checked ? 'on' : 'off';
+                    // Revert immediately, let modal decide
+                    this.checked = !this.checked; 
+                    showGenericConfirm(toggleId, mode);
+                });
+            }
         });
 
-        // Show/hide PiShip rate input
-        document.getElementById('piship').addEventListener('change', function () {
-            document.getElementById('pishipRateGroup').style.display = this.checked ? 'block' : 'none';
-        });
+        function showGenericConfirm(toggleId, mode) {
+            const config = toggleConfigs[toggleId][mode];
+            const overlay = document.getElementById('genericConfirmModal');
+            
+            document.getElementById('genericConfirmIcon').textContent = config.icon;
+            document.getElementById('genericConfirmTitle').textContent = config.title;
+            document.getElementById('genericConfirmText').innerHTML = config.text;
+            document.getElementById('genericConfirmBtn').textContent = config.btn;
+
+            overlay.dataset.targetId = toggleId;
+            overlay.dataset.mode = mode;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGenericConfirm(accepted) {
+            const overlay = document.getElementById('genericConfirmModal');
+            const targetId = overlay.dataset.targetId;
+            const mode = overlay.dataset.mode;
+            
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            if (accepted) {
+                const toggle = document.getElementById(targetId);
+                toggle.checked = (mode === 'on');
+                
+                // Special handling for freeship fee group visibility
+                if (targetId === 'freeshipXtra') {
+                    document.getElementById('freeshipFeeGroup').style.display = toggle.checked ? 'block' : 'none';
+                }
+                
+                calculate();
+            }
+        }
 
         // Auto-update fixed fee rate when category or shop type changes
         function updateFixedFeeRate() {
@@ -2145,7 +2377,6 @@
             const taxGTGTEnabled = document.getElementById('taxGTGT').checked;
             const taxTNCNEnabled = document.getElementById('taxTNCN').checked;
             const pishipEnabled = document.getElementById('piship').checked;
-            const pishipRate = parseFloat(document.getElementById('pishipRate').value) || 0;
 
             // Total sale value (price * quantity - shop discount)
             const totalSaleValue = (productPrice * quantity) - shopDiscount;
@@ -2170,10 +2401,10 @@
             }
             const serviceFee = voucherXtraFee + freeshipXtraFee;
 
-            // 4. Phí dịch vụ PiShip
+            // 4. Phí dịch vụ PiShip (phí cố định 1.620₫/đơn)
             let pishipFee = 0;
             if (pishipEnabled) {
-                pishipFee = Math.floor(effectiveSaleValue * (pishipRate / 100));
+                pishipFee = 1620;
             }
 
             // 5. Thuế GTGT (1% doanh thu)
@@ -2302,14 +2533,12 @@
             document.getElementById('category').value = 'thoi_trang';
             document.getElementById('transactionFee').value = '4.91';
             document.getElementById('voucherXtra').checked = true;
-            document.getElementById('freeshipXtra').checked = true;
+            document.getElementById('freeshipXtra').checked = false;
             document.getElementById('freeshipFee').value = '4.35';
-            document.getElementById('freeshipFeeGroup').style.display = 'block';
+            document.getElementById('freeshipFeeGroup').style.display = 'none';
             document.getElementById('taxGTGT').checked = true;
             document.getElementById('taxTNCN').checked = true;
             document.getElementById('piship').checked = false;
-            document.getElementById('pishipRate').value = '2.35';
-            document.getElementById('pishipRateGroup').style.display = 'none';
             updateFixedFeeRate();
 
             calculate();
@@ -2417,6 +2646,22 @@
             document.body.style.overflow = 'auto'; // Cho phép cuộn trang lại
         }
     </script>
+
+    <!-- Generic Confirmation Modal -->
+    <div class="confirm-overlay" id="genericConfirmModal">
+        <div class="confirm-modal">
+            <div class="confirm-modal-icon" id="genericConfirmIcon">⚠️</div>
+            <div class="confirm-modal-title" id="genericConfirmTitle">Xác nhận</div>
+            <div class="confirm-modal-text" id="genericConfirmText">
+                Bạn có chắc chắn?
+            </div>
+            <div class="confirm-modal-actions">
+                <button class="confirm-modal-btn cancel" onclick="closeGenericConfirm(false)">Không, để sau</button>
+                <button class="confirm-modal-btn confirm" id="genericConfirmBtn" onclick="closeGenericConfirm(true)">✅ Xác nhận</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
