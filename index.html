@@ -1358,8 +1358,13 @@
         }
 
         @keyframes confirmOverlayIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .confirm-modal {
@@ -1381,6 +1386,7 @@
                 opacity: 0;
                 transform: scale(0.85) translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: scale(1) translateY(0);
@@ -1767,9 +1773,6 @@
                             <line x1="8" y1="18" x2="16" y2="18" />
                         </svg>
                         Tính Phí Ngay
-                    </button>
-                    <button class="btn-reset" onclick="resetForm()">
-                        🔄 Nhập Lại
                     </button>
                 </div>
 
@@ -2298,11 +2301,11 @@
         // Setup generic confirm for all toggles
         Object.keys(toggleConfigs).forEach(toggleId => {
             const toggleElement = document.getElementById(toggleId);
-            if(toggleElement) {
+            if (toggleElement) {
                 toggleElement.addEventListener('change', function (e) {
                     const mode = this.checked ? 'on' : 'off';
                     // Revert immediately, let modal decide
-                    this.checked = !this.checked; 
+                    this.checked = !this.checked;
                     showGenericConfirm(toggleId, mode);
                 });
             }
@@ -2311,7 +2314,7 @@
         function showGenericConfirm(toggleId, mode) {
             const config = toggleConfigs[toggleId][mode];
             const overlay = document.getElementById('genericConfirmModal');
-            
+
             document.getElementById('genericConfirmIcon').textContent = config.icon;
             document.getElementById('genericConfirmTitle').textContent = config.title;
             document.getElementById('genericConfirmText').innerHTML = config.text;
@@ -2327,19 +2330,19 @@
             const overlay = document.getElementById('genericConfirmModal');
             const targetId = overlay.dataset.targetId;
             const mode = overlay.dataset.mode;
-            
+
             overlay.classList.remove('active');
             document.body.style.overflow = 'auto';
-            
+
             if (accepted) {
                 const toggle = document.getElementById(targetId);
                 toggle.checked = (mode === 'on');
-                
+
                 // Special handling for freeship fee group visibility
                 if (targetId === 'freeshipXtra') {
                     document.getElementById('freeshipFeeGroup').style.display = toggle.checked ? 'block' : 'none';
                 }
-                
+
                 calculate();
             }
         }
@@ -2657,7 +2660,8 @@
             </div>
             <div class="confirm-modal-actions">
                 <button class="confirm-modal-btn cancel" onclick="closeGenericConfirm(false)">Không, để sau</button>
-                <button class="confirm-modal-btn confirm" id="genericConfirmBtn" onclick="closeGenericConfirm(true)">✅ Xác nhận</button>
+                <button class="confirm-modal-btn confirm" id="genericConfirmBtn" onclick="closeGenericConfirm(true)">✅
+                    Xác nhận</button>
             </div>
         </div>
     </div>
